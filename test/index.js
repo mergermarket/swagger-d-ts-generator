@@ -144,6 +144,41 @@ test('complex type mapping', t => {
   assertTransformation(t, input, expected)
 })
 
+test('complex array types', t => {
+  const input = {
+    definitions: {
+      SampleDefinition: {
+        properties: {
+          complexArray: {
+            type: 'array',
+            items: {$ref: '#/definitions/ComplexTypeDef'}
+          }
+        }
+      },
+      ComplexTypeDef: {
+        properties: {
+          prop1: { type: 'string' },
+          prop2: { type: 'boolean' }
+        }
+      }
+    }
+  }
+
+  const expected = `
+  declare module "swagger-defs" {
+    interface SampleDefinition {
+      complexArray?: ComplexTypeDef[]
+    }
+    interface ComplexTypeDef {
+      prop1?: string
+      prop2?: boolean
+    }
+  }
+  `
+
+  assertTransformation(t, input, expected)
+})
+
 function assertTransformation (t, input, expected) {
   const output = codeGen(input)
   t.deepEqual(output, expected, printDiff(output, expected))
