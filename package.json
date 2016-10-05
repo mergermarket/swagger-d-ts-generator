@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/mergermarket/swagger-d-ts-generator"
   },
+  "publishConfig": {
+    "registry": "http://mmrepo.artifactoryonline.com/mmrepo/api/npm/npm-local"
+  },
   "author": "Dan Ryan",
   "license": "ISC",
   "dependencies": {
