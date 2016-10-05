@@ -179,6 +179,31 @@ test('complex array types', t => {
   assertTransformation(t, input, expected)
 })
 
+test('simple array types', t => {
+  const input = {
+    definitions: {
+      SampleDefinition: {
+        properties: {
+          simpleArray: {
+            type: 'array',
+            items: {type: 'string'}
+          }
+        }
+      }
+    }
+  }
+
+  const expected = `
+  declare module "swagger-defs" {
+    interface SampleDefinition {
+      simpleArray?: string[]
+    }
+  }
+  `
+
+  assertTransformation(t, input, expected)
+})
+
 function assertTransformation (t, input, expected) {
   const output = codeGen(input)
   t.deepEqual(output, expected, printDiff(output, expected))
