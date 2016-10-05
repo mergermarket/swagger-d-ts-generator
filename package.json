@@ -1,0 +1,20 @@
+{
+  "name": "swagger-d-ts-generator",
+  "version": "0.0.1",
+  "description": "Generates typescript files from the definitions section of swagger files.",
+  "main": "code-gen.js",
+  "scripts": {
+    "test": "ava --verbose"
+  },
+  "author": "Dan Ryan",
+  "license": "ISC",
+  "dependencies": {
+    "args": "^2.1.0",
+    "handlebars": "^4.0.5",
+    "js-yaml": "^3.6.1",
+    "traverse": "^0.6.6"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0"
+  }
+}
