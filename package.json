@@ -6,6 +6,10 @@
   "scripts": {
     "test": "ava --verbose"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mergermarket/swagger-d-ts-generator"
+  },
   "author": "Dan Ryan",
   "license": "ISC",
   "dependencies": {
