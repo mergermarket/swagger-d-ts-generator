@@ -1,6 +1,6 @@
 {
   "name": "swagger-d-ts-generator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generates typescript files from the definitions section of swagger files.",
   "main": "code-gen.js",
   "scripts": {
