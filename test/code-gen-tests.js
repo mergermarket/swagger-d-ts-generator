@@ -88,7 +88,8 @@ test('simple datatype mapping', t => {
           boolProp: { type: 'boolean' },
           dateProp: { type: 'string', format: 'date' },
           dateTimeProp: { type: 'string', format: 'date-time' },
-          stringProp: { type: 'string' }
+          stringProp: { type: 'string' },
+          objectProp: { type: 'object' }
         }
       }
     }
@@ -103,6 +104,7 @@ test('simple datatype mapping', t => {
       dateProp?: Date
       dateTimeProp?: Date
       stringProp?: string
+      objectProp?: Object
     }
   }
   `
