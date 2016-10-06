@@ -204,6 +204,65 @@ test('simple array types', t => {
   assertTransformation(t, input, expected)
 })
 
+test('enums', t => {
+  const input = {
+    definitions: {
+      SampleDefinition: {
+        properties: {
+          prop1: {
+            type: 'string',
+            enums: ['loan', 'bond']
+          }
+        }
+      }
+    }
+  }
+
+  const expected = `
+  declare module "swagger-defs" {
+    type prop1Type =
+      | loan = "loan"
+      | bond = "bond"
+    
+    interface SampleDefinition {
+      prop1?: prop1Type
+    }
+  }
+  `
+  assertTransformation(t, input, expected)
+})
+
+test('enum within array', t => {
+  const input = {
+    definitions: {
+      SampleDefinition: {
+        properties: {
+          prop1: {
+            type: 'array',
+            items: {
+              type: 'string',
+              enums: ['loan', 'bond']
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const expected = `
+  declare module "swagger-defs" {
+    type prop1Type =
+      | loan = "loan"
+      | bond = "bond"
+    
+    interface SampleDefinition {
+      prop1?: prop1Type[]
+    }
+  }
+  `
+  assertTransformation(t, input, expected)
+})
+
 function assertTransformation (t, input, expected) {
   const output = codeGen(input)
   t.deepEqual(output, expected, printDiff(output, expected))
