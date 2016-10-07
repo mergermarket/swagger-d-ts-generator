@@ -223,7 +223,7 @@ test('enums', t => {
   const expected = `
   declare module "swagger-defs" {
     type prop1Type =
-      | "loan"
+      "loan"
       | "bond"
     
     interface SampleDefinition {
@@ -254,7 +254,7 @@ test('enum within array', t => {
   const expected = `
   declare module "swagger-defs" {
     type prop1Type =
-      | "loan"
+      "loan"
       | "bond"
     
     interface SampleDefinition {
