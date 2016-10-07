@@ -213,7 +213,7 @@ test('enums', t => {
         properties: {
           prop1: {
             type: 'string',
-            enums: ['loan', 'bond']
+            enum: ['loan', 'bond']
           }
         }
       }
@@ -243,7 +243,7 @@ test('enum within array', t => {
             type: 'array',
             items: {
               type: 'string',
-              enums: ['loan', 'bond']
+              enum: ['loan', 'bond']
             }
           }
         }
