@@ -16,12 +16,10 @@ test('simple transform', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    interface SampleDefinition {
-      prop1: string
-    }
-  }
-  `
+export interface SampleDefinition {
+  prop1: string
+}
+`
   assertTransformation(t, input, expected)
 })
 
@@ -44,13 +42,11 @@ test('transform definition with multiple properties', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    interface SampleDefinition {
-      prop1: string
-      prop2: string
-    }
-  }
-  `
+export interface SampleDefinition {
+  prop1: string
+  prop2: string
+}
+`
   assertTransformation(t, input, expected)
 })
 
@@ -69,12 +65,10 @@ test('non-required property', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    interface SampleDefinition {
-      prop1?: string
-    }
-  }
-  `
+export interface SampleDefinition {
+  prop1?: string
+}
+`
   assertTransformation(t, input, expected)
 })
 
@@ -96,18 +90,16 @@ test('simple datatype mapping', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    interface SampleDefinition {
-      integerProp?: number
-      numberProp?: number
-      boolProp?: boolean
-      dateProp?: Date
-      dateTimeProp?: Date
-      stringProp?: string
-      objectProp?: Object
-    }
-  }
-  `
+export interface SampleDefinition {
+  integerProp?: number
+  numberProp?: number
+  boolProp?: boolean
+  dateProp?: Date
+  dateTimeProp?: Date
+  stringProp?: string
+  objectProp?: Object
+}
+`
 
   assertTransformation(t, input, expected)
 })
@@ -132,16 +124,14 @@ test('complex type mapping', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    interface SampleDefinition {
-      complexProp?: ComplexTypeDef
-    }
-    interface ComplexTypeDef {
-      prop1?: string
-      prop2?: boolean
-    }
-  }
-  `
+export interface SampleDefinition {
+  complexProp?: ComplexTypeDef
+}
+export interface ComplexTypeDef {
+  prop1?: string
+  prop2?: boolean
+}
+`
 
   assertTransformation(t, input, expected)
 })
@@ -167,16 +157,14 @@ test('complex array types', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    interface SampleDefinition {
-      complexArray?: ComplexTypeDef[]
-    }
-    interface ComplexTypeDef {
-      prop1?: string
-      prop2?: boolean
-    }
-  }
-  `
+export interface SampleDefinition {
+  complexArray?: ComplexTypeDef[]
+}
+export interface ComplexTypeDef {
+  prop1?: string
+  prop2?: boolean
+}
+`
 
   assertTransformation(t, input, expected)
 })
@@ -196,12 +184,10 @@ test('simple array types', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    interface SampleDefinition {
-      simpleArray?: string[]
-    }
-  }
-  `
+export interface SampleDefinition {
+  simpleArray?: string[]
+}
+`
 
   assertTransformation(t, input, expected)
 })
@@ -221,16 +207,20 @@ test('enums', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    type prop1Type =
-      "loan"
-      | "bond"
-    
-    interface SampleDefinition {
-      prop1?: prop1Type
-    }
-  }
-  `
+export type prop1Type =
+  "loan"
+  | "bond"
+
+export const prop1Values: prop1Type[] = [
+  'loan',
+  'bond'
+]
+
+export interface SampleDefinition {
+  prop1?: prop1Type
+}
+`
+
   assertTransformation(t, input, expected)
 })
 
@@ -252,16 +242,19 @@ test('enum within array', t => {
   }
 
   const expected = `
-  declare module "swagger-defs" {
-    type prop1Type =
-      "loan"
-      | "bond"
-    
-    interface SampleDefinition {
-      prop1?: prop1Type[]
-    }
-  }
-  `
+export type prop1Type =
+  "loan"
+  | "bond"
+
+export const prop1Values: prop1Type[] = [
+  'loan',
+  'bond'
+]
+
+export interface SampleDefinition {
+  prop1?: prop1Type[]
+}
+`
   assertTransformation(t, input, expected)
 })
 
