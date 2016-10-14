@@ -208,8 +208,8 @@ test('enums', t => {
 
   const expected = `
 export type prop1Type =
-  "loan"
-  | "bond"
+  'loan'
+  | 'bond'
 
 export const prop1Values: prop1Type[] = [
   'loan',
@@ -243,8 +243,8 @@ test('enum within array', t => {
 
   const expected = `
 export type prop1Type =
-  "loan"
-  | "bond"
+  'loan'
+  | 'bond'
 
 export const prop1Values: prop1Type[] = [
   'loan',
@@ -253,6 +253,37 @@ export const prop1Values: prop1Type[] = [
 
 export interface SampleDefinition {
   prop1?: prop1Type[]
+}
+`
+  assertTransformation(t, input, expected)
+})
+
+test('convert kebab to camel case', t => {
+  const input = {
+    definitions: {
+      SampleDefinition: {
+        properties: {
+          'prop-type-string': {
+            type: 'string',
+            enum: ['loan', 'bond']
+          }
+        }
+      }
+    }
+  }
+
+  const expected = `
+export type propTypeStringType =
+  'loan'
+  | 'bond'
+
+export const propTypeStringValues: propTypeStringType[] = [
+  'loan',
+  'bond'
+]
+
+export interface SampleDefinition {
+  propTypeString?: propTypeStringType
 }
 `
   assertTransformation(t, input, expected)
