@@ -192,6 +192,40 @@ export interface SampleDefinition {
   assertTransformation(t, input, expected)
 })
 
+test('enum as a reference', t => {
+  const input = {
+    definitions: {
+      SampleDefinition: {
+        properties: {
+          prop1: {
+            $ref: '#/definitions/List'
+          }
+        }
+      },
+      List: {
+        type: 'string',
+        enum: ['loan', 'bond']
+      }
+    }
+  }
+
+  const expected = `
+export type listType =
+  'loan'
+  | 'bond'
+
+export const listValues: listType[] = [
+  'loan',
+  'bond'
+]
+
+export interface SampleDefinition {
+  prop1?: listType
+}
+`
+  assertTransformation(t, input, expected)
+})
+
 test('enums', t => {
   const input = {
     definitions: {
