@@ -94,8 +94,8 @@ export interface SampleDefinition {
   integerProp?: number
   numberProp?: number
   boolProp?: boolean
-  dateProp?: Date
-  dateTimeProp?: Date
+  dateProp?: string
+  dateTimeProp?: string
   stringProp?: string
   objectProp?: Object
 }
