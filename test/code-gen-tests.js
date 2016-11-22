@@ -210,17 +210,17 @@ test('enum as a reference', t => {
   }
 
   const expected = `
-export type listType =
+export type List =
   'loan'
   | 'bond'
 
-export const listValues: listType[] = [
+export const listValues: List[] = [
   'loan',
   'bond'
 ]
 
 export interface SampleDefinition {
-  prop1?: listType
+  prop1?: List
 }
 `
   assertTransformation(t, input, expected)
@@ -241,17 +241,17 @@ test('enums', t => {
   }
 
   const expected = `
-export type prop1Type =
+export type Prop1 =
   'loan'
   | 'bond'
 
-export const prop1Values: prop1Type[] = [
+export const prop1Values: Prop1[] = [
   'loan',
   'bond'
 ]
 
 export interface SampleDefinition {
-  prop1?: prop1Type
+  prop1?: Prop1
 }
 `
 
@@ -276,17 +276,17 @@ test('enum within array', t => {
   }
 
   const expected = `
-export type prop1Type =
+export type Prop1 =
   'loan'
   | 'bond'
 
-export const prop1Values: prop1Type[] = [
+export const prop1Values: Prop1[] = [
   'loan',
   'bond'
 ]
 
 export interface SampleDefinition {
-  prop1?: prop1Type[]
+  prop1?: Prop1[]
 }
 `
   assertTransformation(t, input, expected)
@@ -307,17 +307,17 @@ test('convert kebab to camel case', t => {
   }
 
   const expected = `
-export type propTypeStringType =
+export type PropTypeString =
   'loan'
   | 'bond'
 
-export const propTypeStringValues: propTypeStringType[] = [
+export const propTypeStringValues: PropTypeString[] = [
   'loan',
   'bond'
 ]
 
 export interface SampleDefinition {
-  propTypeString?: propTypeStringType
+  propTypeString?: PropTypeString
 }
 `
   assertTransformation(t, input, expected)
