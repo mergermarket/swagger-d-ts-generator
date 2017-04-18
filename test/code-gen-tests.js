@@ -258,6 +258,40 @@ export interface SampleDefinition {
   assertTransformation(t, input, expected)
 })
 
+test('enums with special characters are preserved', t => {
+  const input = {
+    definitions: {
+      SampleDefinition: {
+        properties: {
+          prop1: {
+            type: 'string',
+            enum: ['loan', 'cats & dogs', 'wh^^om$&8*@']
+          }
+        }
+      }
+    }
+  }
+
+  const expected = `
+export type Prop1 =
+  'loan'
+  | 'cats & dogs'
+  | 'wh^^om$&8*@'
+
+export const prop1Values: Prop1[] = [
+  'loan',
+  'cats & dogs',
+  'wh^^om$&8*@'
+]
+
+export interface SampleDefinition {
+  prop1?: Prop1
+}
+`
+
+  assertTransformation(t, input, expected)
+})
+
 test('enum within array', t => {
   const input = {
     definitions: {
