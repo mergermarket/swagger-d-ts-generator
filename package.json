@@ -4,7 +4,7 @@
   "description": "Generates typescript files from the definitions section of swagger files.",
   "main": "code-gen.js",
   "scripts": {
-    "test": "ava --verbose"
+    "test": "node_modules/.bin/ava --verbose"
   },
   "repository": {
     "type": "git",
